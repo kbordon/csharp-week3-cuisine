@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
+
 
 namespace RestaurantCuisine.Models
 {
-  public class Class
+  public class Restaurant
   {
     public static void ClearAll()
       {
@@ -12,7 +14,7 @@ namespace RestaurantCuisine.Models
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"DELETE FROM _database;";
+        cmd.CommandText = @"DELETE FROM restaurants;";
         cmd.ExecuteNonQuery();
 
         conn.Close();
