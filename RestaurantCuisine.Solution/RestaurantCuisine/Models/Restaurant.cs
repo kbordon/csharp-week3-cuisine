@@ -29,7 +29,7 @@ namespace RestaurantCuisine.Models
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"DELETE FROM restaurants;";
+        cmd.CommandText = @"DELETE FROM restaurants; ALTER TABLE restaurants AUTO_INCREMENT = 1";
         cmd.ExecuteNonQuery();
 
         conn.Close();

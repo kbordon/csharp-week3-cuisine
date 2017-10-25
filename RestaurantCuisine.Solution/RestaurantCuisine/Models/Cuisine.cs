@@ -24,7 +24,6 @@ namespace RestaurantCuisine.Models
 
       var cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = "DELETE FROM cuisines WHERE id = @searchId;";
-
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@searchId";
       searchId.Value = this.Id;
