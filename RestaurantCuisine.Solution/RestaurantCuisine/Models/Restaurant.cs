@@ -41,7 +41,6 @@ namespace RestaurantCuisine.Models
 
       public static List<Restaurant> GetAll()
       {
-        Console.WriteLine("in getall");
         List<Restaurant> allRestaurants = new List<Restaurant> {};
         MySqlConnection conn = DB.Connection();
         conn.Open();
@@ -126,6 +125,103 @@ namespace RestaurantCuisine.Models
       public static Restaurant Find(int searchId)
       {
         MySqlConnection conn = DB.Connection();
+        conn.Open();
+
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT * FROM restaurants WHERE id = @thisId;";
+
+        MySqlParameter thisId = new MySqlParameter();
+        thisId.ParameterName = "@thisId";
+        thisId.Value = searchId;
+
+        cmd.Parameters.Add(thisId);
+
+        int restaurantId = 0;
+        string restaurantName = "";
+        string restaurantCost = "";
+        string restaurantDish = "";
+        int restaurantCuisineId = 0;
+
+        var rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          restaurantId = rdr.GetInt32(0);
+          restaurantName = rdr.GetString(1);
+          restaurantCost = rdr.GetString(2);
+          restaurantDish = rdr.GetString(3);
+          restaurantCuisineId = rdr.GetInt32(4);
+        }
+
+        Restaurant foundRestaurant = new Restaurant(restaurantName, restaurantCost, restaurantDish, restaurantCuisineId, restaurantId);
+
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+        return foundRestaurant;
+      }
+
+      public void UpdateRestaurant(string newName, string newCost, string newDish)
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"UPDATE restaurants SET name = @newName, cost = @newCost, favorite_dish = @newDish WHERE id = @searchId;";
+
+        MySqlParameter searchId = new MySqlParameter();
+        searchId.ParameterName = "@searchId";
+        searchId.Value = Id;
+        Console.WriteLine(Id);
+        cmd.Parameters.Add(searchId);
+
+        //name
+        MySqlParameter name = new MySqlParameter();
+        name.ParameterName = "@newName";
+        name.Value = newName;
+        cmd.Parameters.Add(name);
+        //cost
+        MySqlParameter cost = new MySqlParameter();
+        cost.ParameterName = "@newCost";
+        cost.Value = newCost;
+        cmd.Parameters.Add(cost);
+        //favorite dish
+        MySqlParameter restaurantDish = new MySqlParameter();
+        restaurantDish.ParameterName = "@newDish";
+        restaurantDish.Value = newDish;
+        cmd.Parameters.Add(restaurantDish);
+
+        cmd.ExecuteNonQuery();
+        Name = newName;
+        Cost = newCost;
+        FavoriteDish = newDish;
+
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+      }
+
+      public void Delete()
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = "DELETE FROM restaurants WHERE id = @searchId;";
+
+        MySqlParameter searchId = new MySqlParameter();
+        searchId.ParameterName = "@searchId";
+        searchId.Value = this.Id;
+        cmd.Parameters.Add(searchId);
+
+        cmd.ExecuteNonQuery();
+
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
       }
   }
 }

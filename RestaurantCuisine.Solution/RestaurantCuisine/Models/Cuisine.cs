@@ -23,7 +23,7 @@ namespace RestaurantCuisine.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = "DELETE FROM cuisines where id = @searchId;";
+      cmd.CommandText = "DELETE FROM cuisines WHERE id = @searchId;";
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@searchId";
@@ -32,7 +32,7 @@ namespace RestaurantCuisine.Models
 
       cmd.ExecuteNonQuery();
 
-      if (conn!=null)
+      if (conn != null)
       {
         conn.Dispose();
       }

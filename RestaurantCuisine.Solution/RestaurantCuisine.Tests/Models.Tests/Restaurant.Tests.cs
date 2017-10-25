@@ -22,8 +22,6 @@ namespace RestaurantCuisine.Models.Tests
     public void GetAll_RestaurantEmptyAtFirst_0()
     {
       int result = Restaurant.GetAll().Count;
-      Console.WriteLine("before getall");
-      Console.WriteLine("after getall");
       Assert.AreEqual(0, result);
     }
 
@@ -57,6 +55,38 @@ namespace RestaurantCuisine.Models.Tests
       Restaurant foundRestaurant = Restaurant.Find(testRestaurant.Id);
 
       Assert.AreEqual(testRestaurant, foundRestaurant);
+    }
+
+    [TestMethod]
+    public void UpdateRestaurant_UpdateRestaurantInDatabase_Restaurant()
+    {
+      Restaurant testRestaurant = new Restaurant("Marios", "$", "pineapple pizza", 1);
+      testRestaurant.Save();
+      string newName = "Ginos";
+      string newCost = "$$";
+      string newDish = "bacon pizza";
+      Restaurant newRestaurant = new Restaurant(newName, newCost, newDish, 1);
+      testRestaurant.UpdateRestaurant(newName, newCost, newDish);
+
+      Assert.AreEqual(newRestaurant.Name, testRestaurant.Name);
+      Assert.AreEqual(newRestaurant.Cost, testRestaurant.Cost);
+      Assert.AreEqual(newRestaurant.FavoriteDish, testRestaurant.FavoriteDish);
+    }
+
+    [TestMethod]
+    public void Delete_DeletesRestaurantInDatabase_Restaurant()
+    {
+      Restaurant testRestaurant = new Restaurant("Marios", "$", "pineapple pizza", 1);
+      testRestaurant.Save();
+      Restaurant testRestaurant2 = new Restaurant("Ginos", "$$", "bacon pizza", 2);
+      testRestaurant2.Save();
+
+      List<Restaurant> testList = new List<Restaurant>{testRestaurant2};
+      testRestaurant.Delete();
+
+      List<Restaurant> result = Restaurant.GetAll();
+
+      CollectionAssert.AreEqual(testList, result);
     }
   }
 }
