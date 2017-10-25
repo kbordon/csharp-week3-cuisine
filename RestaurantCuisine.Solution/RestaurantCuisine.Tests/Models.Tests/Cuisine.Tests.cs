@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rename.Models;
+using RestaurantCuisine.Models;
 
-namespace Rename.Models.Tests
+namespace RestaurantCuisine.Models.Tests
 {
   [TestClass]
   public class ClassTests : IDisposable

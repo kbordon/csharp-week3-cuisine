@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Rename.Models
+namespace RestaurantCuisine.Models
 {
   public class Class
   {

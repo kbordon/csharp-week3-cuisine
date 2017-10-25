@@ -1,4 +1,4 @@
-# Rename
+# RestaurantCuisine
 ##### by Emily Wells Jimenez and Kim Bordon
 
 ### Description

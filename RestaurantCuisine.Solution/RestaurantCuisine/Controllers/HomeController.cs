@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using Rename.Models;
+using RestaurantCuisine.Models;
 
-namespace Rename.Controllers
+namespace RestaurantCuisine.Controllers
 {
     public class HomeController : Controller
     {
