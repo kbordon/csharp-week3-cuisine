@@ -34,5 +34,19 @@ namespace RestaurantCuisine.Controllers
         List<Cuisine> allCuisines = Cuisine.GetAll();
         return View(allCuisines);
       }
+
+      [HttpGet("/cuisines/{id}")]
+      public ActionResult CuisineDetail(int id)
+      {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+
+        Cuisine selectedCuisine = Cuisine.Find(id);
+        model.Add("this-cuisine", selectedCuisine);
+        List<Restaurant> cuisineRestaurants = Restaurant.GetAllRestaurantsByCuisine(selectedCuisine.Id);
+        model.Add("cuisine-restaurants", cuisineRestaurants);
+        return View(model);
+
+
+      }
     }
 }

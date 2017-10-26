@@ -1,6 +1,9 @@
 @{
   Layout = "_Layout";
 }
+<h1>Cuisines</h1>
+<br>
+
 @if (Model.Count == 0)
 {
  <h1>You don't have any types of cuisine entered yet!</h1>
@@ -9,12 +12,12 @@ else
 {
   @foreach(var cuisine in Model)
   {
-    <li><a href="/cuisine/@cuisine.Id">@cuisine.Name</a></li>
+    <li><a href="/cuisines/@cuisine.Id">@cuisine.Name</a></li>
   }
   <br>
   <br>
   <br>
-  <form action="/cuisine/clear" method="post">
+  <form action="/cuisines/clear" method="post">
     <button type="submit">Clear All Cuisines</button>
   </form>
 }

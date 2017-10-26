@@ -172,7 +172,6 @@ namespace RestaurantCuisine.Models
         MySqlParameter searchId = new MySqlParameter();
         searchId.ParameterName = "@searchId";
         searchId.Value = Id;
-        Console.WriteLine(Id);
         cmd.Parameters.Add(searchId);
 
         //name
@@ -222,6 +221,40 @@ namespace RestaurantCuisine.Models
         {
           conn.Dispose();
         }
+      }
+
+      public static List<Restaurant> GetAllRestaurantsByCuisine(int inputId)
+      {
+        List<Restaurant> cuisineRestaurants = new List<Restaurant>{};
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT * FROM restaurants WHERE cuisine_id = @cuisineId;";
+
+        MySqlParameter cuisineId = new MySqlParameter();
+        cuisineId.ParameterName = "@cuisineId";
+        cuisineId.Value = inputId;
+        cmd.Parameters.Add(cuisineId);
+
+        var rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          int returnId = rdr.GetInt32(0);
+          string returnName = rdr.GetString(1);
+          string returnCost = rdr.GetString(2);
+          string returnDish = rdr.GetString(3);
+          int returnCuisineId = rdr.GetInt32(4);
+          Restaurant returnRestaurant = new Restaurant(returnName, returnCost, returnDish, returnCuisineId, returnId);
+          cuisineRestaurants.Add(returnRestaurant);
+        }
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+
+        return cuisineRestaurants;
       }
   }
 }

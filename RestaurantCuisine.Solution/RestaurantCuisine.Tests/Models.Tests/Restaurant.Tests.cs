@@ -88,5 +88,22 @@ namespace RestaurantCuisine.Models.Tests
 
       CollectionAssert.AreEqual(testList, result);
     }
+
+    [TestMethod]
+    public void GetAllRestaurantsByCuisine_GetsRestaurantsInDatabaseByCuisineType_List()
+    {
+      Restaurant testRestaurant = new Restaurant("Marios", "$", "pineapple pizza", 1);
+      testRestaurant.Save();
+      Restaurant testRestaurant2 = new Restaurant("Sauced", "$$", "alcohol", 2);
+      testRestaurant2.Save();
+      Restaurant testRestaurant3 = new Restaurant("Luigis", "$", "not pineapple pizza", 1);
+      testRestaurant3.Save();
+
+      List<Restaurant> testList = Restaurant.GetAllRestaurantsByCuisine(1);
+      List<Restaurant> expectedList = new List<Restaurant>{testRestaurant, testRestaurant3};
+
+      CollectionAssert.AreEqual(testList, expectedList);
+
+    }
   }
 }
