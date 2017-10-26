@@ -1,8 +1,7 @@
 @{
   Layout = "_Layout";
 }
-<h1>Cuisines</h1>
-<br>
+<h1 class="cuisine-header">Cuisines</h1>
 
 @if (Model.Count == 0)
 {
@@ -10,17 +9,26 @@
 }
 else
 {
-  @foreach(var cuisine in Model)
-  {
-    <li><a href="/cuisines/@cuisine.Id">@cuisine.Name</a> <form action="/cuisines/@cuisine.Id/delete" method="post"><button class="btn btn-danger" type="submit">Delete Cuisine</button></form></li>
-  }
+    <div class="row">
+      <div class="container">
+        <form action="/cuisines/clear" method="post">
+          <button class="btn btn-danger" type="submit">Clear All Cuisines</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    @foreach(var cuisine in Model)
+    {
+      <div class="well custom-well col-xs-3">
+        <form action="/cuisines/@cuisine.Id/delete" method="post"><button class="btn btn-danger custom-btn" type="submit">Delete</button></form>
+        <span class="custom-text"><a href="/cuisines/@cuisine.Id">@cuisine.Name</a></span>
+      </div>
+    }
   <br>
   <br>
   <br>
-  <form action="/cuisines/clear" method="post">
-    <button class="btn btn-danger" type="submit">Clear All Cuisines</button>
-  </form>
 }
-
-<br><a href="/">Return to Home</a>
+<div class="row">
+</div>
 <br><a href="/cuisines/new">Add Type of Cuisine</a>
+<br><a href="/">Return to Home</a>

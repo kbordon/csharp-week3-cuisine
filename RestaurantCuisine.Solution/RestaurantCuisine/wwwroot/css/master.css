@@ -1,7 +1,80 @@
 body {
   font-family: sans-serif;
+  background-image: url(/img/bg.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+/*body.index-background {
+    background-image: url(/img/bg.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}*/
+
+.jumbotron {
+  text-align: center;
+  letter-spacing: 5px;
+  background-color: rgba(235, 235, 224, 0.6);
+}
 .alert {
   text-align: center;
+}
+
+.custom-well {
+   margin-left: 5px;
+   margin-right: 5px;
+   height: 75px;
+   font-size: 24px;
+   min-width: 250px;
+   background-color: rgba(255, 255, 255, 0.9);
+}
+
+.cuisine-header {
+  color: white;
+  text-shadow: 2px 2px 2px gray;
+}
+
+.cuisine-name {
+  font-size: 16pt;
+}
+
+.index-body {
+  text-align: center;
+  padding: 30px;
+}
+
+.index-link {
+  font-size: 30px;
+}
+
+.other-link {
+  font-size: 20px;
+}
+
+.well-body {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.custom-btn {
+  float: right;
+}
+
+.custom-btn2 {
+  position: absolute;
+  left: 50px;
+
+}
+
+.custom-text {
+  float: left;
+}
+
+.custom-list {
+  font-size: 16px;
+}
+
+.restaurant-list {
+  font-size: 24px;
 }

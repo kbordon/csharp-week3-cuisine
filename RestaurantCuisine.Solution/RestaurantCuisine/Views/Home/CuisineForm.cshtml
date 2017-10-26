@@ -1,22 +1,24 @@
 @{
   Layout = "_Layout";
 }
-<h1>Add Cuisine</h1>
-<br>
-<form action="/cuisines/new" method="post">
-  <div class="row">
-    <div class="form-group col-xs-3">
-      <label for="cuisine-name">Enter a type of cuisine:</label>
-     <input type="text" class="form-control" name="cuisine-name" id="cuisine-name" required autofocus>
-   </div>
-  </div>
-  <div class="row">
-    <div class="container">
-      <button class="btn btn-info" type="submit">Submit</button>
+<div class="well well-body">
+  <h1>Add Cuisine</h1>
+  <br>
+  <form action="/cuisines/new" method="post">
+    <div class="row">
+      <div class="form-group col-xs-3">
+        <label class= "cuisine-name" for="cuisine-name">Enter a type of cuisine:</label>
+       <input type="text" class="form-control" name="cuisine-name" id="cuisine-name" required autofocus>
+     </div>
     </div>
-  </div>
-</form>
+    <div class="row">
+      <div class="container">
+        <button class="btn btn-info" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
 
 <br>
 <br>
-<a href="/">Back to Home</a>
+<a class="other-link" href="/">Back to Home</a>
+</div>
