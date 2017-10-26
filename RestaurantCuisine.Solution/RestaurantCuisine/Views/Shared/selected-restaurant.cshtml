@@ -1,0 +1,10 @@
+@if (Model["selected-restaurant"] != null)
+{
+  <div class="well">
+    <h2>@Model["selected-restaurant"].Name</h2>
+    <ul>
+      <li>@Model["selected-restaurant"].Cost</li>
+      <li>@Model["selected-restaurant"].FavoriteDish</li>
+    </ul>
+  </div>
+}

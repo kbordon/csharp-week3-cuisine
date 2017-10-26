@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-<h1>@Model["selected-cuisine"].Name Restaurants</h1>
+<h1>@Model["this-cuisine"].Name Restaurants</h1>
 @if(Model["cuisine-restaurants"] == null)
 {
   <h4>There have been no restaurants add to this cuisine type yet!</h4>
@@ -11,10 +11,13 @@ else
   <ul>
     @foreach(var restaurant in Model["cuisine-restaurants"])
     {
-      <li><a href='/cuisines/@Model["selected-cuisine"].Id/restaurants/@restaurant.Id'>@restaurant.Name</a></li>
+      <li><a href='/cuisines/@Model["this-cuisine"].Id/restaurants/@restaurant.Id'>@restaurant.Name</a></li>
     }
   </ul>
 }
-<a href="/cuisines/@Model["selected-cuisine"].Id/new">Add a Restaurant</a>
-<a href="/cuisines/">Return to Cuisines</a>
-<a href="/">Return Home</a>
+<br><a href="/cuisines/@Model["this-cuisine"].Id/restaurants/new">Add a Restaurant</a>
+<br><a href="/cuisines/">Return to Cuisines</a>
+<br><a href="/">Return Home</a>
+<div class="row">
+  @Html.Partial("selected-restaurant")
+</div>

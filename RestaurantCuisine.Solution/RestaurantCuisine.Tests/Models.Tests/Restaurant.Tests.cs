@@ -90,6 +90,25 @@ namespace RestaurantCuisine.Models.Tests
     }
 
     [TestMethod]
+    public void Delete_DeleteRestaurantsByCuisineId_Restaurant()
+    {
+      Restaurant testRestaurant = new Restaurant("Marios", "$", "pineapple pizza", 1);
+      testRestaurant.Save();
+      Restaurant testRestaurant2 = new Restaurant("Sauced", "$$", "alcohol", 2);
+      testRestaurant2.Save();
+      Restaurant testRestaurant3 = new Restaurant("Luigis", "$", "not pineapple pizza", 1);
+      testRestaurant3.Save();
+
+      Restaurant.DeleteRestaurantsByCuisine(2);
+
+      List<Restaurant> testList = Restaurant.GetAll();
+
+      List<Restaurant> expectedList = new Restaurant(testRestaurant, testRestaurant3);
+
+      CollectionAssert.AreEqual(testList, expectedList);
+    }
+
+    [TestMethod]
     public void GetAllRestaurantsByCuisine_GetsRestaurantsInDatabaseByCuisineType_List()
     {
       Restaurant testRestaurant = new Restaurant("Marios", "$", "pineapple pizza", 1);
