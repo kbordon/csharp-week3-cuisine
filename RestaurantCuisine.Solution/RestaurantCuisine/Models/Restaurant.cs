@@ -226,24 +226,24 @@ namespace RestaurantCuisine.Models
 
       public static void DeleteRestaurantsByCuisine(int inputId)
       {
-        // MySqlConnection conn = DB.Connection();
-        // conn.Open();
-        //
-        // var cmd = conn.CreateCommand() as MySqlCommand;
-        // cmd.CommandText = @"DELETE FROM restaurants where cuisine_id = @cuisineId;";
-        //
-        // MySqlParameter cuisineId = new MySqlParameter();
-        // cuisineId.ParameterName = "@cuisineId";
-        // cuisineId.Value = inputId;
-        // cmd.Parameters.Add(cuisineId);
-        //
-        // cmd.ExecuteNonQuery();
-        //
-        // conn.Close();
-        // if (conn != null)
-        // {
-        //   conn.Dispose();
-        // }
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE FROM restaurants where cuisine_id = @cuisineId;";
+
+        MySqlParameter cuisineId = new MySqlParameter();
+        cuisineId.ParameterName = "@cuisineId";
+        cuisineId.Value = inputId;
+        cmd.Parameters.Add(cuisineId);
+
+        cmd.ExecuteNonQuery();
+
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
       }
 
       public static List<Restaurant> GetAllRestaurantsByCuisine(int inputId)

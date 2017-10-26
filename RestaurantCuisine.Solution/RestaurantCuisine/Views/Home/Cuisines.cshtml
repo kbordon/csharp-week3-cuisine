@@ -12,7 +12,7 @@ else
 {
   @foreach(var cuisine in Model)
   {
-    <li><a href="/cuisines/@cuisine.Id">@cuisine.Name</a></li>
+    <li><a href="/cuisines/@cuisine.Id">@cuisine.Name</a> <form action="/cuisines/@cuisine.Id/delete" method="post"><button type="submit">Delete Cuisine</button></form></li>
   }
   <br>
   <br>

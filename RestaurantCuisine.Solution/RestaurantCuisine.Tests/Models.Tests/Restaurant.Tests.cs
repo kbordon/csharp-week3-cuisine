@@ -103,7 +103,7 @@ namespace RestaurantCuisine.Models.Tests
 
       List<Restaurant> testList = Restaurant.GetAll();
 
-      List<Restaurant> expectedList = new Restaurant(testRestaurant, testRestaurant3);
+      List<Restaurant> expectedList = new List<Restaurant> {testRestaurant, testRestaurant3};
 
       CollectionAssert.AreEqual(testList, expectedList);
     }
