@@ -12,15 +12,15 @@ else
 {
   @foreach(var cuisine in Model)
   {
-    <li><a href="/cuisines/@cuisine.Id">@cuisine.Name</a> <form action="/cuisines/@cuisine.Id/delete" method="post"><button type="submit">Delete Cuisine</button></form></li>
+    <li><a href="/cuisines/@cuisine.Id">@cuisine.Name</a> <form action="/cuisines/@cuisine.Id/delete" method="post"><button class="btn btn-danger" type="submit">Delete Cuisine</button></form></li>
   }
   <br>
   <br>
   <br>
   <form action="/cuisines/clear" method="post">
-    <button type="submit">Clear All Cuisines</button>
+    <button class="btn btn-danger" type="submit">Clear All Cuisines</button>
   </form>
 }
 
-<br><a href="/">Return to Homepage</a>
-<br><a href="/cuisines/new">Add type of cuisine</a>
+<br><a href="/">Return to Home</a>
+<br><a href="/cuisines/new">Add Type of Cuisine</a>

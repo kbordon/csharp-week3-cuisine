@@ -1,31 +1,32 @@
 @{
   Layout = "_Layout";
 }
-<h1>Add a @Model.Name Restaurant</h1>
+<h1>Add @Model.Name Restaurant</h1>
 <br>
 <form action="/cuisines/@Model.Id/restaurants/new" method="post">
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input type=text name="name" id="name" required autofocus>
-  </div>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-xs-3">
-        <label for="cost">Cost:</label>
-        <select class="form-control" name="cost" id="cost">
-          <option>$</option>
-          <option>$$</option>
-          <option>$$$</option>
-        </select>
+  <div class="row">
+    <div class="form-group col-xs-3">
+      <label for="name">Name:</label>
+      <input type=text class="form-control" name="name" id="name" required autofocus>
+    </div>
+      <div class="form-group col-xs-3">
+          <label for="cost">Cost:</label>
+          <select class="form-control" name="cost" id="cost">
+            <option>$</option>
+            <option>$$</option>
+            <option>$$$</option>
+          </select>
       </div>
+    <div class="form-group col-xs-3">
+      <label for="dish">Favorite Dish:</label>
+      <input type=text class="form-control" name="dish" id="dish" required>
     </div>
   </div>
-  <div class="form-group">
-    <label for="dish">Favorite Dish:</label>
-    <input type=text name="dish" id="dish" required>
+  <div class="row">
+    <div class="container">
+      <button type="submit" class="btn btn-info">Submit</button>
+    </div>
   </div>
-  <button type="submit" class="btn">Submit</button>
 </form>
-
 <br><a href="/cuisines/">Return to Cuisines</a>
 <br><a href="/">Return Home</a>

@@ -2,22 +2,29 @@
   Layout = "_Layout";
 }
 <h1>@Model["this-cuisine"].Name Restaurants</h1>
-@if(Model["cuisine-restaurants"] == null)
-{
-  <h4>There have been no restaurants add to this cuisine type yet!</h4>
-}
-else
-{
-  <ul>
-    @foreach(var restaurant in Model["cuisine-restaurants"])
+<p class="lead">Click on a restaurant to view details or delete the restaurant.</p>
+<div class="row">
+  <div class="col-md-6">
+    @if(Model["cuisine-restaurants"].Count == 0)
     {
-      <li><a href='/cuisines/@Model["this-cuisine"].Id/restaurants/@restaurant.Id'>@restaurant.Name</a></li>
+      <div class="alert alert-warning">
+        <p><b>ALERT: </b>There have been no restaurants added to this cuisine type yet!</p>
+      </div>
     }
-  </ul>
-}
+    else
+    {
+      <ul>
+        @foreach(var restaurant in Model["cuisine-restaurants"])
+        {
+          <li><a href='/cuisines/@Model["this-cuisine"].Id/restaurants/@restaurant.Id'>@restaurant.Name</a></li>
+        }
+      </ul>
+    }
+  </div>
+  <div class="col-md-6">
+    @Html.Partial("selected-restaurant")
+  </div>
+</div>
 <br><a href="/cuisines/@Model["this-cuisine"].Id/restaurants/new">Add a Restaurant</a>
 <br><a href="/cuisines/">Return to Cuisines</a>
-<br><a href="/">Return Home</a>
-<div class="row">
-  @Html.Partial("selected-restaurant")
-</div>
+<br><a href="/">Return to Home</a>
