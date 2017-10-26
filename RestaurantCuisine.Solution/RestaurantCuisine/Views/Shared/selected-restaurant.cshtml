@@ -6,5 +6,10 @@
       <li>@Model["selected-restaurant"].Cost</li>
       <li>@Model["selected-restaurant"].FavoriteDish</li>
     </ul>
+    <br>
+
+    <form action='/cuisines/@Model["this-cuisine"].Id/restaurants/@Model["selected-restaurant"].Id/delete' method="post">
+      <button type="submit">Delete Restaurant</button>
+    </form>
   </div>
 }

@@ -114,5 +114,20 @@ namespace RestaurantCuisine.Controllers
         return View("Cuisines", allCuisines);
 
       }
+
+      [HttpPost("/cuisines/{id}/restaurants/{restaurantId}/delete")]
+      public ActionResult DeleteRestaurant(int id, int restaurantId)
+      {
+        Restaurant selectedRestaurant = Restaurant.Find(restaurantId);
+        selectedRestaurant.Delete();
+        Dictionary<string, object> model = new Dictionary<string, object> {};
+        model.Add("selected-restaurant", null);
+        Cuisine selectedCuisine = Cuisine.Find(id);
+        model.Add("this-cuisine", selectedCuisine);
+        List<Restaurant> allRestaurants = Restaurant.GetAllRestaurantsByCuisine(id);
+        model.Add("cuisine-restaurants", allRestaurants);
+        return View("CuisineDetail", model);
+      }
+
     }
 }
