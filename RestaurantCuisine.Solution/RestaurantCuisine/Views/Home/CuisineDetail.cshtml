@@ -2,31 +2,37 @@
   Layout = "_Layout";
 }
 <div class="well well-body">
-  <h1>@Model["this-cuisine"].Name Restaurants</h1>
-  <p class="lead">Click on a restaurant to view details or delete the restaurant.</p>
   <div class="row">
-    <div class="col-md-4">
-      @if(Model["cuisine-restaurants"].Count == 0)
-      {
-        <div class="alert alert-warning">
-          <p><b>ALERT: </b>There have been no restaurants added to this cuisine type yet!</p>
-        </div>
-      }
-      else
-      {
-        <ul class="list-unstyled restaurant-list">
-          @foreach(var restaurant in Model["cuisine-restaurants"])
-          {
-            <li><a href='/cuisines/@Model["this-cuisine"].Id/restaurants/@restaurant.Id'>@restaurant.Name</a></li>
-          }
-        </ul>
-      }
-    </div>
     <div class="col-md-6">
-      @Html.Partial("selected-restaurant")
+        <h1>@Model["this-cuisine"].Name Restaurants</h1>
+        <p class="lead">Click on a restaurant to view details or delete the restaurant.</p>
+        @if(Model["cuisine-restaurants"].Count == 0)
+        {
+          <div class="alert alert-warning">
+            <p><b>ALERT: </b>There have been no restaurants added to this cuisine type yet!</p>
+          </div>
+        }
+        else
+        {
+          <ul class="list-unstyled restaurant-list">
+            @foreach(var restaurant in Model["cuisine-restaurants"])
+            {
+              <li><a href='/cuisines/@Model["this-cuisine"].Id/restaurants/@restaurant.Id'>@restaurant.Name</a></li>
+            }
+          </ul>
+        }
+      </div>
+      <div class="col-md-6 rest-detail">
+        @Html.Partial("selected-restaurant")
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-inline">
+        <li><a href="/cuisines/@Model["this-cuisine"].Id/restaurants/new">Add a Restaurant</a></li>
+        <li><a href="/cuisines/">Return to Cuisines</a></li>
+        <li><a href="/">Return to Home</a></li>
+      </ul>
     </div>
   </div>
-  <br><a href="/cuisines/@Model["this-cuisine"].Id/restaurants/new">Add a Restaurant</a>
-  <br><a href="/cuisines/">Return to Cuisines</a>
-  <br><a href="/">Return to Home</a>
 </div>

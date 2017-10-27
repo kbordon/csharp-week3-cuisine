@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>Edit @Model.Name Details</h2>
+<form action="/cuisines/@Model["this-cuisine"].Id/restaurants/@Model["selected-restaurant"].Id/edit" method="post">
+  <div class="row">
+    <div class="form-group">
+      <label for="new-name">Name:</label>
+      <input type=text class="form-control" name="new-name" id="new-name" required autofocus value="@Model.Name">
+    </div>
+      <div class="form-group">
+          <label for="new-cost">Cost:</label>
+          <select class="form-control" name="new-cost" id="new-cost" value="@Model.Cost">
+            <option>$</option>
+            <option>$$</option>
+            <option>$$$</option>
+          </select>
+      </div>
+    <div class="form-group">
+      <label for="new-dish">Favorite Dish:</label>
+      <input type=text class="form-control" name="new-dish" id="new-dish" value="@Model.FavoriteDish" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <button type="submit" class="btn btn-info">Submit</button>
+    </div>
+  </div>

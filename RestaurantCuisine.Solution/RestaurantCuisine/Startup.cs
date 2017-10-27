@@ -7,7 +7,7 @@ namespace RestaurantCuisine
 {
   public static class DBConfiguration
     {
-      public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=restaurantcuisine;";
+      public static string ConnectionString = "server=localhost;user id=root;password=root;port=3306;database=restaurantcuisine;";
     }
   public class Startup
   {

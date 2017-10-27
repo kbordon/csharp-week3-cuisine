@@ -1,12 +1,14 @@
 @if (Model["selected-restaurant"] != null)
 {
+  <form action='/cuisines/@Model["this-cuisine"].Id/restaurants/@Model["selected-restaurant"].Id/delete' method="post">
+  <button class="btn btn-danger custom-btn" type="submit">Delete Restaurant</button>
+  </form>
   <h3><em>@Model["selected-restaurant"].Name</em></h3>
   <ul class="custom-list">
     <li>Cost: @Model["selected-restaurant"].Cost</li>
     <li>Favorite Dish: @Model["selected-restaurant"].FavoriteDish</li>
+    <br>
+    <li class="list-unstyled">(<a href="/cuisines/@Model["this-cuisine"].Id/restaurants/@Model["selected-restaurant"].Id/edit">EDIT</a>)</li>
   </ul>
   <br>
-    <form action='/cuisines/@Model["this-cuisine"].Id/restaurants/@Model["selected-restaurant"].Id/delete' method="post">
-      <button class="btn btn-danger custom-btn2" type="submit">Delete Restaurant</button>
-    </form>
 }

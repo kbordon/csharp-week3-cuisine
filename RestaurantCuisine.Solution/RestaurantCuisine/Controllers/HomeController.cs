@@ -129,5 +129,27 @@ namespace RestaurantCuisine.Controllers
         return View("CuisineDetail", model);
       }
 
+      [HttpGet("/cuisines/{id}/restaurants/{restaurantId}/edit")]
+      public ActionResult RestaurantEdit(int restaurantId)
+      {
+          Restaurant selectedRestaurant = Restaurant.Find(restaurantId);
+          return View(selectedRestaurant);
+      }
+
+      [HttpPost("/cuisines/{id}/restaurants/{restaurantId}/edit")]
+      public ActionResult RestaurantEditConfirm(int id)
+      {
+          Restaurant selectedRestaurant = Restaurant.Find(id);
+          selectedRestaurant.UpdateRestaurant(Request.Form["new-name"], Request.Form["new-cost"],
+          Request.Form["new-dish"]);
+          Dictionary<string, object> model = new Dictionary<string, object>{};
+          model.Add("selected-restaurant", null);
+          Cuisine selectedCuisine = Cuisine.Find(id);
+          model.Add("this-cuisine", selectedCuisine);
+          List<Restaurant> cuisineRestaurants = Restaurant.GetAllRestaurantsByCuisine(selectedCuisine.Id);
+          model.Add("cuisine-restaurants", cuisineRestaurants);
+          return View("cuisines", model);
+      }
+
     }
 }
